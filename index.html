@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>待办事项</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="待办事项概览">
+        <div>
+          <p class="eyebrow">TODAY</p>
+          <h1>待办事项</h1>
+        </div>
+        <div class="summary" id="summary"></div>
+      </section>
+
+      <section class="composer" aria-label="添加待办事项">
+        <form id="todo-form">
+          <input
+            id="todo-input"
+            name="title"
+            type="text"
+            autocomplete="off"
+            maxlength="80"
+            placeholder="写下要处理的事情"
+            required
+          />
+          <select id="todo-category" name="category" aria-label="选择重要程度">
+            <option value="A">A 最重要</option>
+            <option value="B">B 次重要</option>
+            <option value="C">C 没那么重要</option>
+            <option value="O">其他事项</option>
+          </select>
+          <button type="submit">添加</button>
+        </form>
+      </section>
+
+      <section class="board" id="board" aria-label="待办列表"></section>
+    </main>
+
+    <template id="column-template">
+      <article class="column">
+        <header class="column-header">
+          <div>
+            <p class="category-code"></p>
+            <h2></h2>
+          </div>
+          <span class="count"></span>
+        </header>
+        <div class="todo-list"></div>
+      </article>
+    </template>
+
+    <template id="todo-template">
+      <div class="todo-item">
+        <label>
+          <input type="checkbox" />
+          <span class="todo-title"></span>
+        </label>
+        <div class="todo-actions">
+          <select class="move-select" aria-label="移动到分类">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="O">其他</option>
+          </select>
+          <button type="button" class="delete-button" aria-label="删除">删除</button>
+        </div>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

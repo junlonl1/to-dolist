@@ -1,0 +1,286 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f6f8;
+  --text: #172026;
+  --muted: #64707d;
+  --line: #dce2e8;
+  --panel: #ffffff;
+  --a: #d83f31;
+  --b: #b7791f;
+  --c: #277c6b;
+  --o: #5661a6;
+  --shadow: 0 14px 40px rgba(20, 32, 44, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1.05;
+}
+
+.summary {
+  color: var(--muted);
+  font-size: 15px;
+  text-align: right;
+}
+
+.composer {
+  margin-bottom: 22px;
+}
+
+#todo-form {
+  display: grid;
+  grid-template-columns: 1fr minmax(140px, 180px) 96px;
+  gap: 10px;
+  padding: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+#todo-input,
+#todo-category,
+.move-select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+
+#todo-input,
+#todo-category {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  background: #172026;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2b3842;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.column {
+  min-height: 420px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--accent);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.column[data-category="A"] {
+  --accent: var(--a);
+}
+
+.column[data-category="B"] {
+  --accent: var(--b);
+}
+
+.column[data-category="C"] {
+  --accent: var(--c);
+}
+
+.column[data-category="O"] {
+  --accent: var(--o);
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.category-code {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent), white 86%);
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.todo-list {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+}
+
+.todo-item {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfd;
+}
+
+.todo-item label {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 8px;
+  align-items: start;
+  min-width: 0;
+}
+
+.todo-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+
+.todo-title {
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.todo-item.is-done .todo-title {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.todo-actions {
+  display: grid;
+  grid-template-columns: 1fr 64px;
+  gap: 8px;
+}
+
+.move-select {
+  min-height: 34px;
+  padding: 0 8px;
+}
+
+.delete-button {
+  min-height: 34px;
+  background: #e7ecef;
+  color: #3f4b55;
+  font-size: 13px;
+}
+
+.delete-button:hover {
+  background: #dce3e8;
+}
+
+.empty {
+  padding: 24px 12px;
+  color: var(--muted);
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+}
+
+@media (max-width: 960px) {
+  .board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    width: min(100% - 20px, 560px);
+    padding: 20px 0;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .summary {
+    text-align: left;
+  }
+
+  #todo-form {
+    grid-template-columns: 1fr;
+  }
+
+  .board {
+    grid-template-columns: 1fr;
+  }
+
+  .column {
+    min-height: 280px;
+  }
+}
